@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    background: #eef2f5;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,33 +12,58 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 header h1 {
     margin: 0;
-    font-size: 32px;
-    color: #333;
+    font-size: 40px;
+    color: #222;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
 }
 
 header p {
-    margin: 5px 0 0 0;
-    font-size: 16px;
+    margin: 5px 0 10px;
+    font-size: 18px;
     color: #555;
+    font-style: italic;
+}
+
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.image-gallery img {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    border: 3px solid #007bff;
+    object-fit: cover;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.image-gallery img:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 0 10px rgba(0,123,255,0.5);
 }
 
 .chat-container {
     background: white;
-    width: 600px; /* plus large */
-    height: 700px; /* plus haut */
+    width: 650px;
+    height: 750px;
     display: flex;
     flex-direction: column;
     border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    box-shadow: 0 0 18px rgba(0,0,0,0.15);
     overflow: hidden;
     position: relative;
 }
@@ -47,7 +72,7 @@ header p {
     flex: 1;
     padding: 15px;
     overflow-y: auto;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ccc;
 }
 
 .message {
@@ -57,12 +82,12 @@ header p {
 
 .user {
     text-align: right;
-    color: blue;
+    color: #007bff;
 }
 
 .bot {
     text-align: left;
-    color: green;
+    color: #28a745;
 }
 
 form {
@@ -78,7 +103,7 @@ input {
 }
 
 button {
-    padding: 12px 20px;
+    padding: 12px 24px;
     border: none;
     background: #007bff;
     color: white;
@@ -91,23 +116,4 @@ button:hover {
     background: #0056b3;
 }
 
-.bryan-photos {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.bryan-photos img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 2px solid #007bff;
-    object-fit: cover;
-    transition: transform 0.2s;
-}
-
-.bryan-photos img:hover {
-    transform: scale(1.2) rotate(10deg);
-}
 
