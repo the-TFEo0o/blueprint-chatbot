@@ -7,40 +7,43 @@
 </head>
 <body>
 
-<div class="app">
+<div class="chat-wrapper">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <h2>Don't Die</h2>
-        <button onclick="openSection('routine')">My Routine</button>
-        <button onclick="openSection('buy')">To Buy</button>
-        <button onclick="openSection('todo')">To Do</button>
-    </aside>
+    <!-- TITRE -->
+    <header>
+        <h1>Don't Die</h1>
+        <p>AI agent for Don't Die</p>
+    </header>
 
-    <!-- MAIN -->
-    <main class="main">
+    <!-- IMAGES -->
+    <div class="image-gallery">
+        <img src="screenshot-2025-12-02-154703.png" alt="Don't Die screenshot" />
+        <img src="99A04770-copy-scaled.jpg" alt="Bryan Johnson" />
+    </div>
 
-        <!-- SUR-ONGLET -->
-        <section class="super-panel hidden" id="super-panel">
-            <h2 id="panel-title"></h2>
+    <!-- CHAT -->
+    <div class="chat-container">
+        <div id="chat-box"></div>
 
-            <div class="panel-content" id="panel-content">
-                <p class="empty">No data yet.</p>
-            </div>
+        <form id="chat-form">
+            <input
+                type="text"
+                id="user-input"
+                placeholder="Écris ton message..."
+                autocomplete="off"
+                required
+            />
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
 
-            <button id="panel-action-btn" onclick="handleAction()">Add</button>
-        </section>
+    <!-- BOUTONS (POUR TEST) -->
+    <div style="margin-top:20px; text-align:center;">
+        <button onclick="generateRoutine()">My Routine</button>
+        <button onclick="generateToBuy()">To Buy</button>
+        <button onclick="generateTodo()">To Do</button>
+    </div>
 
-        <!-- CHAT -->
-        <div class="chat-container">
-            <div id="chat-box"></div>
-            <form id="chat-form">
-                <input id="user-input" placeholder="Type a message..." />
-                <button type="submit">Send</button>
-            </form>
-        </div>
-
-    </main>
 </div>
 
 <script src="script.js"></script>
