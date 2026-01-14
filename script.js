@@ -1,69 +1,62 @@
 const WEBHOOK_URL = "https://theoia2.app.n8n.cloud/webhook-test/a636b7eb-4d91-4014-a6e3-2c0d1996c63b";
 
-let currentSection = null;
+const chatBox = document.getElementById("chat-box");
+const form = document.getElementById("chat-form");
+const input = document.getElementById("user-input");
 
-const panel = document.getElementById("super-panel");
-const panelTitle = document.getElementById("panel-title");
-const panelContent = document.getElementById("panel-content");
-const actionBtn = document.getElementById("panel-action-btn");
-
-/* ===== OPEN SECTION ===== */
-function openSection(section) {
-    currentSection = section;
-    panel.classList.remove("hidden");
-
-    if (section === "routine") panelTitle.textContent = "My Routine";
-    if (section === "buy") panelTitle.textContent = "Things to Buy";
-    if (section === "todo") panelTitle.textContent = "To Do List";
-
-    panelContent.innerHTML = `<p class="empty">Loading...</p>`;
-    actionBtn.textContent = "Add";
-
-    loadSection();
+/* ===== UI ===== */
+function addMessage(text, sender) {
+    const div = document.createElement("div");
+    div.classList.add("message", sender);
+    div.textContent = text;
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-/* ===== LOAD EXISTING DATA ===== */
-async function loadSection() {
-    let prompt = "";
+/* ===== CORE SEND FUNCTION ===== */
+async function sendMessage(message) {
+    if (!message) return;
 
-    if (currentSection === "routine") prompt = "Generate my routine";
-    if (currentSection === "buy") prompt = "Generate things to buy";
-    if (currentSection === "todo") prompt = "Generate my to-do list";
+    addMessage(message, "user");
 
-    const res = await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: prompt })
-    });
+    try {
+        const response = await fetch(WEBHOOK_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: message   // 👈 on garde EXACTEMENT ça
+            })
+        });
 
-    const text = await res.text();
+        const text = await response.text();
+        addMessage(text, "bot");
 
-    if (text && text.trim().length > 0) {
-        panelContent.textContent = text;
-        actionBtn.textContent = "Update";
-    } else {
-        panelContent.innerHTML = `<p class="empty">No data yet.</p>`;
-        actionBtn.textContent = "Add";
+    } catch (error) {
+        addMessage("Erreur de connexion au serveur", "bot");
+        console.error(error);
     }
 }
 
-/* ===== ADD / UPDATE ===== */
-async function handleAction() {
-    let prompt = "";
+/* ===== FORM SUBMIT ===== */
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const message = input.value.trim();
+    input.value = "";
+    sendMessage(message);
+});
 
-    if (currentSection === "routine") prompt = "Generate my routine";
-    if (currentSection === "buy") prompt = "Generate things to buy";
-    if (currentSection === "todo") prompt = "Generate my to-do list";
-
-    panelContent.textContent = "Updating...";
-
-    const res = await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: prompt })
-    });
-
-    const text = await res.text();
-    panelContent.textContent = text;
-    actionBtn.textContent = "Update";
+/* ===== BOUTONS ===== */
+function generateRoutine() {
+    sendMessage("Generate my routine");
 }
+
+function generateToBuy() {
+    sendMessage("Generate things to buy");
+}
+
+function generateTodo() {
+    sendMessage("Generate my to-do list");
+}
+
