@@ -80,6 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
             generateBtn.onclick = () => sendMessage("Generate my to-do list");
             textarea.placeholder = "Paste or write your to-do list here...";
         }
+
+        /* 🔥 FIX VISIBILITÉ */
+        actionPanel.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     addBtn.addEventListener("click", () => {
@@ -89,6 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btnRoutine.addEventListener("click", () => openPanel("routine"));
     btnBuy.addEventListener("click", () => openPanel("buy"));
     btnTodo.addEventListener("click", () => openPanel("todo"));
-
 });
+
 
