@@ -7,38 +7,42 @@
 </head>
 <body>
 
-<div class="chat-wrapper">
+<div class="app">
 
-    <!-- TITRE -->
-    <header>
-        <h1>Don't Die</h1>
-        <p>AI agent for Don't Die</p>
-    </header>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>Menu</h2>
+        <button onclick="sendPrompt('Generate my routine')">My Routine</button>
+        <button onclick="sendPrompt('Generate things to buy')">To Buy</button>
+        <button onclick="sendPrompt('Generate my to-do list')">To Do</button>
+    </aside>
 
-    <!-- IMAGES -->
-    <div class="image-gallery">
-        <img src="screenshot-2025-12-02-154703.png" alt="Don't Die screenshot" />
-        <img src="99A04770-copy-scaled.jpg" alt="Bryan Johnson" />
+    <!-- MAIN -->
+    <div class="main">
+
+        <header>
+            <h1>Don't Die</h1>
+            <p>AI agent for Don't Die</p>
+        </header>
+
+        <div class="image-gallery">
+            <img src="screenshot-2025-12-02-154703.png" />
+            <img src="99A04770-copy-scaled.jpg" />
+        </div>
+
+        <div class="chat-container">
+            <div id="chat-box"></div>
+
+            <form id="chat-form">
+                <input id="user-input" placeholder="Type a message..." />
+                <button type="submit">Send</button>
+            </form>
+        </div>
+
     </div>
-
-    <!-- CHAT -->
-    <div class="chat-container">
-        <div id="chat-box"></div>
-
-        <form id="chat-form">
-            <input
-                type="text"
-                id="user-input"
-                placeholder="Écris ton message..."
-                autocomplete="off"
-                required
-            />
-            <button type="submit">Envoyer</button>
-        </form>
-    </div>
-
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
