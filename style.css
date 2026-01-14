@@ -5,27 +5,54 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
+}
+
+.chat-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #333;
+}
+
+header p {
+    margin: 5px 0 0 0;
+    font-size: 16px;
+    color: #555;
 }
 
 .chat-container {
     background: white;
-    width: 400px;
-    height: 500px;
+    width: 600px; /* plus large */
+    height: 700px; /* plus haut */
     display: flex;
     flex-direction: column;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+    position: relative;
 }
 
 #chat-box {
     flex: 1;
-    padding: 10px;
+    padding: 15px;
     overflow-y: auto;
     border-bottom: 1px solid #ddd;
 }
 
 .message {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    line-height: 1.4;
 }
 
 .user {
@@ -44,15 +71,43 @@ form {
 
 input {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-top: 1px solid #ddd;
+    font-size: 16px;
 }
 
 button {
-    padding: 10px;
+    padding: 12px 20px;
     border: none;
     background: #007bff;
     color: white;
+    font-weight: bold;
     cursor: pointer;
+    transition: background 0.2s;
 }
+
+button:hover {
+    background: #0056b3;
+}
+
+.bryan-photos {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.bryan-photos img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+    object-fit: cover;
+    transition: transform 0.2s;
+}
+
+.bryan-photos img:hover {
+    transform: scale(1.2) rotate(10deg);
+}
+
