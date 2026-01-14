@@ -13,22 +13,21 @@ body {
     height: 100vh;
 }
 
-/* ===== SIDEBAR ===== */
+/* SIDEBAR */
 .sidebar {
     width: 220px;
     background: #111;
     color: white;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
 }
 
 .sidebar h2 {
-    margin-bottom: 20px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .sidebar button {
+    width: 100%;
     background: none;
     border: none;
     color: white;
@@ -43,68 +42,69 @@ body {
     background: #333;
 }
 
-/* ===== MAIN ===== */
+/* MAIN */
 .main {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
 }
 
-header {
-    text-align: center;
+/* SUPER PANEL */
+.super-panel {
+    background: white;
+    max-width: 900px;
+    margin: 0 auto 30px;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
 }
 
-header h1 {
-    font-size: 48px;
-    margin: 0;
+.super-panel h2 {
+    margin-top: 0;
 }
 
-header p {
-    font-style: italic;
-    color: #555;
+.panel-content {
+    min-height: 160px;
+    margin: 15px 0;
+    white-space: pre-line;
 }
 
-/* ===== IMAGES ===== */
-.image-gallery {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
+.empty {
+    color: #777;
 }
 
-.image-gallery img {
-    max-width: 320px;
-    border-radius: 12px;
+#panel-action-btn {
+    padding: 12px 24px;
+    background: #007bff;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-/* ===== CHAT ===== */
+#panel-action-btn:hover {
+    background: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+/* CHAT */
 .chat-container {
     background: white;
-    max-width: 750px;
-    height: 500px;
+    max-width: 900px;
+    height: 350px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    border-radius: 14px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
 }
 
 #chat-box {
     flex: 1;
     padding: 15px;
     overflow-y: auto;
-}
-
-form {
-    display: flex;
-}
-
-input {
-    flex: 1;
-    padding: 12px;
-}
-
-button {
-    padding: 12px 20px;
 }
 
