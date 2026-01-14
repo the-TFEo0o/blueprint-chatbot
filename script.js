@@ -2,7 +2,7 @@ const form = document.getElementById("chat-form");
 const input = document.getElementById("user-input");
 const chatBox = document.getElementById("chat-box");
 
-const WEBHOOK_URL = "https://TON-N8N/webhook/chatbot";
+const WEBHOOK_URL = "https://theoia2.app.n8n.cloud/webhook-test/a636b7eb-4d91-4014-a6e3-2c0d1996c63b";
 
 function addMessage(text, sender) {
     const div = document.createElement("div");
