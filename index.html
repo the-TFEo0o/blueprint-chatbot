@@ -12,15 +12,15 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <h2>Menu</h2>
-        <button onclick="generateRoutine()">My Routine</button>
-        <button onclick="generateToBuy()">To Buy</button>
-        <button onclick="generateTodo()">To Do</button>
+        <button onclick="openPanel('routine')">My Routine</button>
+        <button onclick="openPanel('buy')">To Buy</button>
+        <button onclick="openPanel('todo')">To Do</button>
     </aside>
 
     <!-- MAIN CONTENT -->
     <div class="chat-wrapper">
 
-        <!-- TITRE -->
+        <!-- HEADER -->
         <header>
             <h1>Don't Die</h1>
             <p>AI agent for Don't Die</p>
@@ -28,8 +28,24 @@
 
         <!-- IMAGES -->
         <div class="image-gallery">
-            <img src="screenshot-2025-12-02-154703.png" alt="Don't Die screenshot" />
-            <img src="99A04770-copy-scaled.jpg" alt="Bryan Johnson" />
+            <img src="screenshot-2025-12-02-154703.png" />
+            <img src="99A04770-copy-scaled.jpg" />
+        </div>
+
+        <!-- ACTION PANEL -->
+        <div id="action-panel" class="action-panel hidden">
+            <h2 id="panel-title"></h2>
+
+            <div class="panel-buttons">
+                <button id="generate-btn">Generate</button>
+                <button id="add-btn">Add</button>
+            </div>
+
+            <textarea
+                id="panel-textarea"
+                class="panel-textarea hidden"
+                placeholder=""
+            ></textarea>
         </div>
 
         <!-- CHAT -->
@@ -54,4 +70,5 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
