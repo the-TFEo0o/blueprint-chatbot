@@ -33,7 +33,7 @@ form.addEventListener("submit", async (e) => {
 
         const data = await response.json();
 
-        addMessage(JSON.stringify(data), "bot");
+        addMessage(data.reply, "bot");
 
     } catch (error) {
         addMessage("Erreur de connexion au serveur", "bot");
