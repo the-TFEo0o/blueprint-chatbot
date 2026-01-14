@@ -187,4 +187,7 @@ form button {
 form button:hover {
     background: #0056b3;
 }
+.action-panel {
+    border: 2px solid #007bff;
+}
 
