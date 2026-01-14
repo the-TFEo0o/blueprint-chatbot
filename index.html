@@ -11,35 +11,36 @@
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
-        <h2>Menu</h2>
-         <button onclick="generateRoutine()">My Routine</button>
-        <button onclick="generateToBuy()">To Buy</button>
-        <button onclick="generateTodo()">To Do</button>
+        <h2>Don't Die</h2>
+        <button onclick="openSection('routine')">My Routine</button>
+        <button onclick="openSection('buy')">To Buy</button>
+        <button onclick="openSection('todo')">To Do</button>
     </aside>
 
     <!-- MAIN -->
-    <div class="main">
+    <main class="main">
 
-        <header>
-            <h1>Don't Die</h1>
-            <p>AI agent for Don't Die</p>
-        </header>
+        <!-- SUR-ONGLET -->
+        <section class="super-panel hidden" id="super-panel">
+            <h2 id="panel-title"></h2>
 
-        <div class="image-gallery">
-            <img src="screenshot-2025-12-02-154703.png" />
-            <img src="99A04770-copy-scaled.jpg" />
-        </div>
+            <div class="panel-content" id="panel-content">
+                <p class="empty">No data yet.</p>
+            </div>
 
+            <button id="panel-action-btn" onclick="handleAction()">Add</button>
+        </section>
+
+        <!-- CHAT -->
         <div class="chat-container">
             <div id="chat-box"></div>
-
             <form id="chat-form">
                 <input id="user-input" placeholder="Type a message..." />
                 <button type="submit">Send</button>
             </form>
         </div>
 
-    </div>
+    </main>
 </div>
 
 <script src="script.js"></script>
