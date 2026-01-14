@@ -1,100 +1,94 @@
-const WEBHOOK_URL = "https://theoia2.app.n8n.cloud/webhook-test/a636b7eb-4d91-4014-a6e3-2c0d1996c63b";
+document.addEventListener("DOMContentLoaded", () => {
 
-const chatBox = document.getElementById("chat-box");
-const form = document.getElementById("chat-form");
-const input = document.getElementById("user-input");
+    const WEBHOOK_URL = "https://theoia2.app.n8n.cloud/webhook-test/a636b7eb-4d91-4014-a6e3-2c0d1996c63b";
 
-/* ===== UI ===== */
-function addMessage(text, sender) {
-    const div = document.createElement("div");
-    div.classList.add("message", sender);
-    div.textContent = text;
-    chatBox.appendChild(div);
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
+    const chatBox = document.getElementById("chat-box");
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("user-input");
 
-/* ===== CORE SEND FUNCTION ===== */
-async function sendMessage(message) {
-    if (!message) return;
+    const actionPanel = document.getElementById("action-panel");
+    const panelTitle = document.getElementById("panel-title");
+    const generateBtn = document.getElementById("panel-generate-btn");
+    const addBtn = document.getElementById("panel-add-btn");
+    const textarea = document.getElementById("panel-textarea");
 
-    addMessage(message, "user");
+    const btnRoutine = document.getElementById("btn-routine");
+    const btnBuy = document.getElementById("btn-buy");
+    const btnTodo = document.getElementById("btn-todo");
 
-    try {
-        const response = await fetch(WEBHOOK_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: message   // 👈 on garde EXACTEMENT ça
-            })
-        });
-
-        const text = await response.text();
-        addMessage(text, "bot");
-
-    } catch (error) {
-        addMessage("Erreur de connexion au serveur", "bot");
-        console.error(error);
+    /* ===== UI ===== */
+    function addMessage(text, sender) {
+        const div = document.createElement("div");
+        div.classList.add("message", sender);
+        div.textContent = text;
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
     }
-}
 
-/* ===== FORM SUBMIT ===== */
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const message = input.value.trim();
-    input.value = "";
-    sendMessage(message);
+    /* ===== CORE SEND FUNCTION ===== */
+    async function sendMessage(message) {
+        if (!message) return;
+
+        addMessage(message, "user");
+
+        try {
+            const response = await fetch(WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message })
+            });
+
+            const text = await response.text();
+            addMessage(text, "bot");
+
+        } catch (error) {
+            addMessage("Erreur de connexion au serveur", "bot");
+            console.error(error);
+        }
+    }
+
+    /* ===== CHAT SUBMIT ===== */
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const message = input.value.trim();
+        input.value = "";
+        sendMessage(message);
+    });
+
+    /* ===== PANEL LOGIC ===== */
+    function openPanel(type) {
+        actionPanel.classList.remove("hidden");
+        textarea.classList.add("hidden");
+
+        if (type === "routine") {
+            panelTitle.textContent = "My Routine";
+            generateBtn.textContent = "Generate routine";
+            generateBtn.onclick = () => sendMessage("Generate my routine");
+            textarea.placeholder = "Paste or write your routine here...";
+        }
+
+        if (type === "buy") {
+            panelTitle.textContent = "To Buy";
+            generateBtn.textContent = "Generate list";
+            generateBtn.onclick = () => sendMessage("Generate things to buy");
+            textarea.placeholder = "Paste or write your shopping list here...";
+        }
+
+        if (type === "todo") {
+            panelTitle.textContent = "To Do";
+            generateBtn.textContent = "Generate to-do list";
+            generateBtn.onclick = () => sendMessage("Generate my to-do list");
+            textarea.placeholder = "Paste or write your to-do list here...";
+        }
+    }
+
+    addBtn.addEventListener("click", () => {
+        textarea.classList.toggle("hidden");
+    });
+
+    btnRoutine.addEventListener("click", () => openPanel("routine"));
+    btnBuy.addEventListener("click", () => openPanel("buy"));
+    btnTodo.addEventListener("click", () => openPanel("todo"));
+
 });
 
-/* ===== BOUTONS ===== */
-function generateRoutine() {
-    sendMessage("Generate my routine");
-}
-
-function generateToBuy() {
-    sendMessage("Generate things to buy");
-}
-
-function generateTodo() {
-    sendMessage("Generate my to-do list");
-}
-
-
-const actionPanel = document.getElementById("action-panel");
-const panelTitle = document.getElementById("panel-title");
-const generateBtn = document.getElementById("panel-generate-btn");
-const addBtn = document.getElementById("panel-add-btn");
-const textarea = document.getElementById("panel-textarea");
-
-/* OUVERTURE DU PANEL */
-function openPanel(type) {
-    actionPanel.classList.remove("hidden");
-    textarea.classList.add("hidden");
-
-    if (type === "routine") {
-        panelTitle.textContent = "My Routine";
-        generateBtn.textContent = "Generate routine";
-        generateBtn.onclick = generateRoutine;
-        textarea.placeholder = "Paste or write your routine here...";
-    }
-
-    if (type === "buy") {
-        panelTitle.textContent = "To Buy";
-        generateBtn.textContent = "Generate list";
-        generateBtn.onclick = generateToBuy;
-        textarea.placeholder = "Paste or write your shopping list here...";
-    }
-
-    if (type === "todo") {
-        panelTitle.textContent = "To Do";
-        generateBtn.textContent = "Generate to-do list";
-        generateBtn.onclick = generateTodo;
-        textarea.placeholder = "Paste or write your to-do list here...";
-    }
-}
-
-/* TOGGLE TEXTAREA */
-addBtn.onclick = () => {
-    textarea.classList.toggle("hidden");
-};
