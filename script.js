@@ -1,4 +1,4 @@
-const WEBHOOK_URL = "TON_WEBHOOK_N8N_ICI";
+const WEBHOOK_URL = "https://theoia2.app.n8n.cloud/webhook-test/a636b7eb-4d91-4014-a6e3-2c0d1996c63b";
 
 const chatBox = document.getElementById("chat-box");
 const form = document.getElementById("chat-form");
