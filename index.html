@@ -12,15 +12,15 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <h2>Menu</h2>
-        <button onclick="openPanel('routine')">My Routine</button>
-        <button onclick="openPanel('buy')">To Buy</button>
-        <button onclick="openPanel('todo')">To Do</button>
+        <button id="btn-routine">My Routine</button>
+        <button id="btn-buy">To Buy</button>
+        <button id="btn-todo">To Do</button>
     </aside>
 
     <!-- MAIN CONTENT -->
     <div class="chat-wrapper">
 
-        <!-- TITRE -->
+        <!-- HEADER -->
         <header>
             <h1>Don't Die</h1>
             <p>AI agent for Don't Die</p>
@@ -32,12 +32,12 @@
             <img src="99A04770-copy-scaled.jpg" alt="Bryan Johnson" />
         </div>
 
-        <!-- ACTION PANEL (NOUVEAU) -->
+        <!-- ACTION PANEL -->
         <div id="action-panel" class="action-panel hidden">
             <h3 id="panel-title"></h3>
 
             <div class="panel-buttons">
-                <button id="panel-generate-btn"></button>
+                <button id="panel-generate-btn">Generate</button>
                 <button id="panel-add-btn">Add</button>
             </div>
 
@@ -48,7 +48,7 @@
             ></textarea>
         </div>
 
-        <!-- CHAT (INCHANGÉ) -->
+        <!-- CHAT -->
         <div class="chat-container">
             <div id="chat-box"></div>
 
